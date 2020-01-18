@@ -93,6 +93,24 @@
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
+                <h3>First product</h3>
+                <ul>
+                    <li>Categories: {{\App\Product::with('categories')->first()->categories->implode('name',', ')}}</li>
+                    <li>Tags: {{\App\Product::with('tags')->first()->tags->implode('name',', ')}}</li>
+                </ul>
+
+                <h3>First tag</h3>
+                <ul>
+                    <li>Products: {{\App\Tag::with('products')->first()->products->implode('name',', ')}}</li>
+                </ul>
+
+                <h3>First category</h3>
+                <ul>
+                    <li>Products: {{\App\Category::with('products')->first()->products->implode('name',', ')}}</li>
+                </ul>
+
+
+
             </div>
         </div>
     </body>
