@@ -10,7 +10,7 @@
 	    public function cbInit() {
 
 			# START CONFIGURATION DO NOT REMOVE THIS LINE
-			$this->title_field = "name";
+			$this->title_field = "id";
 			$this->limit = "20";
 			$this->orderby = "id,desc";
 			$this->global_privilege = false;
@@ -42,8 +42,7 @@
 			$this->form[] = ['label'=>'Description','name'=>'description','type'=>'wysiwyg','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Status','name'=>'status','type'=>'select','validation'=>'required','width'=>'col-sm-10','dataenum'=>'pending;active;'];
 			$this->form[] = ['label'=>'Price','name'=>'price','type'=>'text','validation'=>'required','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Category','name'=>'category','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'categories,name','relationship_table'=>'category_product','datatable_ajax'=>'true'];
-			$this->form[] = ['label'=>'Tags','name'=>'tag','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'tags,name','relationship_table'=>'product_tag'];
+			$this->form[] = ['label'=>'Tags','name'=>'tag','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'tags,name','relationship_table'=>'product_tag','datatable_ajax'=>'true'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
@@ -52,8 +51,7 @@
 			//$this->form[] = ['label'=>'Description','name'=>'description','type'=>'wysiwyg','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Status','name'=>'status','type'=>'select','validation'=>'required','width'=>'col-sm-10','dataenum'=>'pending;active;'];
 			//$this->form[] = ['label'=>'Price','name'=>'price','type'=>'text','validation'=>'required','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Category','name'=>'category','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'categories,table','relationship_table'=>'category_product','datatable_ajax'=>'true'];
-			//$this->form[] = ['label'=>'Tags','name'=>'tag','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'tags,table','relationship_table'=>'product_tag'];
+			//$this->form[] = ['label'=>'Tags','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'tags,name','relationship_table'=>'product_tag','datatable_ajax'=>'true'];
 			# OLD END FORM
 
 			/* 

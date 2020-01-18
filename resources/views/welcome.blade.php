@@ -93,6 +93,7 @@
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
+                {{-- 
                 <h3>First product</h3>
                 <ul>
                     <li>Categories: {{\App\Product::with('categories')->first()->categories->implode('name',', ')}}</li>
@@ -108,6 +109,7 @@
                 <ul>
                     <li>Products: {{\App\Category::with('products')->first()->products->implode('name',', ')}}</li>
                 </ul>
+                --}}
 
 
 
