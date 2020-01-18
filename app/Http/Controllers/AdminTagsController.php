@@ -5,7 +5,7 @@
 	use DB;
 	use CRUDBooster;
 
-	class AdminProductsController extends \crocodicstudio\crudbooster\controllers\CBController {
+	class AdminTagsController extends \crocodicstudio\crudbooster\controllers\CBController {
 
 	    public function cbInit() {
 
@@ -25,35 +25,22 @@
 			$this->button_filter = true;
 			$this->button_import = false;
 			$this->button_export = false;
-			$this->table = "products";
+			$this->table = "tags";
 			# END CONFIGURATION DO NOT REMOVE THIS LINE
 
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
 			$this->col[] = ["label"=>"Name","name"=>"name"];
-			$this->col[] = ["label"=>"Total Favorite","name"=>"(select count(favorites.id) from favorites where favorites.product_id = products.id) as total_favorite"];
-			$this->col[] = ["label"=>"Price","name"=>"price"];
-			$this->col[] = ["label"=>"Status","name"=>"status"];
 			# END COLUMNS DO NOT REMOVE THIS LINE
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
-			$this->form[] = ['label'=>'Name','name'=>'name','type'=>'text','validation'=>'required|string|min:3|max:200','width'=>'col-sm-10','placeholder'=>'You can only enter the letter only'];
-			$this->form[] = ['label'=>'Description','name'=>'description','type'=>'wysiwyg','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Status','name'=>'status','type'=>'select','validation'=>'required','width'=>'col-sm-10','dataenum'=>'pending;active;'];
-			$this->form[] = ['label'=>'Price','name'=>'price','type'=>'text','validation'=>'required','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Category','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'categories,table','relationship_table'=>'category_product','datatable_ajax'=>'true'];
-			$this->form[] = ['label'=>'Tags','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'tags,table','relationship_table'=>'product_tag'];
+			$this->form[] = ['label'=>'Name','name'=>'name','type'=>'text','validation'=>'required|string|min:3|max:70','width'=>'col-sm-10','placeholder'=>'You can only enter the letter only'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
 			//$this->form = [];
-			//$this->form[] = ['label'=>'Name','name'=>'name','type'=>'text','validation'=>'required|string|min:3|max:200','width'=>'col-sm-10','placeholder'=>'You can only enter the letter only'];
-			//$this->form[] = ['label'=>'Description','name'=>'description','type'=>'wysiwyg','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Status','name'=>'status','type'=>'select','validation'=>'required','width'=>'col-sm-10','dataenum'=>'pending;active;'];
-			//$this->form[] = ['label'=>'Price','name'=>'price','type'=>'text','validation'=>'required','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Category','name'=>'categories','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'categories,table','relationship_table'=>'category_product','datatable_ajax'=>'true'];
-			//$this->form[] = ['label'=>'Tags','name'=>'tags','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'tags,table','relationship_table'=>'product_tag'];
+			//$this->form[] = ["label"=>"Name","name"=>"name","type"=>"text","required"=>TRUE,"validation"=>"required|string|min:3|max:70","placeholder"=>"You can only enter the letter only"];
 			# OLD END FORM
 
 			/* 
@@ -83,8 +70,6 @@
 	        | 
 	        */
 	        $this->addaction = array();
-	        $this->addaction[] = ['label'=>'Set Active','url'=>CRUDBooster::mainpath('set-status/active/[id]'),'icon'=>'fa fa-check','color'=>'success','showIf'=>"[status] == 'pending'"];
-			$this->addaction[] = ['label'=>'Set Pending','url'=>CRUDBooster::mainpath('set-status/pending/[id]'),'icon'=>'fa fa-ban','color'=>'warning','showIf'=>"[status] == 'active'", 'confirmation' => true];
 
 
 	        /* 
@@ -98,8 +83,6 @@
 	        | 
 	        */
 	        $this->button_selected = array();
-	        $this->button_selected[] = ['label'=>'Set Active','icon'=>'fa fa-check','name'=>'set_active'];
-	        $this->button_selected[] = ['label'=>'Set Pending','icon'=>'fa fa-ban','name'=>'set_pending'];
 
 	                
 	        /* 
@@ -111,7 +94,6 @@
 	        | 
 	        */
 	        $this->alert        = array();
-	        $this->alert[] = ['message'=>'Your message goes here...','type'=>'info'];
 	                
 
 	        
@@ -125,7 +107,6 @@
 	        | 
 	        */
 	        $this->index_button = array();
-	        $this->index_button[] = ['label'=>'Advanced Print','url'=>CRUDBooster::mainpath("print"),"icon"=>"fa fa-print"];
 
 
 
@@ -137,9 +118,7 @@
 	        | @color = Default is none. You can use bootstrap success,info,warning,danger,primary.        
 	        | 
 	        */
-	        $this->table_row_color = array();
-	        $this->table_row_color[] = ['condition'=>"[status] == 'active'","color"=>"success"];
-	        $this->table_row_color[] = ['condition'=>"[status] == 'pending'","color"=>"warning"];     	          
+	        $this->table_row_color = array();     	          
 
 	        
 	        /*
@@ -150,7 +129,6 @@
 	        |
 	        */
 	        $this->index_statistic = array();
-	        $this->index_statistic[] = ['label'=>'Products','count'=>DB::table('products')->count(),'icon'=>'fa fa-check','color'=>'success'];
 
 
 
@@ -236,15 +214,7 @@
 	    |
 	    */
 	    public function actionButtonSelected($id_selected,$button_name) {
-	      //$id_selected is an array of id 
-		  //$button_name is a name that you have set at button_selected 
-		  
-		  if($button_name == 'set_active') {
-		    DB::table('products')->whereIn('id',$id_selected)->update(['status'=>'active']);
-		  }		  
-		  if($button_name == 'set_pending') {
-		    DB::table('products')->whereIn('id',$id_selected)->update(['status'=>'pending']);
-		  }
+	        //Your code here
 	            
 	    }
 
@@ -344,20 +314,9 @@
 
 	    }
 
-	    public function getSetStatus($status,$id) {
-		   DB::table('products')->where('id',$id)->update(['status'=>$status]);
-		   
-		   //This will redirect back and gives a message
-		   CRUDBooster::redirect($_SERVER['HTTP_REFERER'],"The status product has been updated !","info");
-		}
-
 
 
 	    //By the way, you can still create your own method in here... :) 
-
-	    public function print(){
-	    	return 0;
-	    }
 
 
 	}
