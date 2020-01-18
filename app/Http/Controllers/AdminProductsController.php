@@ -51,7 +51,7 @@
 			//$this->form[] = ['label'=>'Description','name'=>'description','type'=>'wysiwyg','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Status','name'=>'status','type'=>'select','validation'=>'required','width'=>'col-sm-10','dataenum'=>'pending;active;'];
 			//$this->form[] = ['label'=>'Price','name'=>'price','type'=>'text','validation'=>'required','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Tags','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'tags,name','relationship_table'=>'product_tag','datatable_ajax'=>'true'];
+			//$this->form[] = ['label'=>'Tags','name'=>'tag','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'tags,name','relationship_table'=>'product_tag','datatable_ajax'=>'true'];
 			# OLD END FORM
 
 			/* 
