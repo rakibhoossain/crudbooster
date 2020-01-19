@@ -4,6 +4,9 @@
 	use Request;
 	use DB;
 	use CRUDBooster;
+	use App\Product;
+	use App\Category;
+	use App\Tag;
 
 	class AdminProductsController extends \crocodicstudio\crudbooster\controllers\CBController {
 
@@ -42,7 +45,8 @@
 			$this->form[] = ['label'=>'Description','name'=>'description','type'=>'wysiwyg','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Status','name'=>'status','type'=>'select','validation'=>'required','width'=>'col-sm-10','dataenum'=>'pending;active;'];
 			$this->form[] = ['label'=>'Price','name'=>'price','type'=>'text','validation'=>'required','width'=>'col-sm-10'];
-			$this->form[] = ['label'=>'Tags','name'=>'tag','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'tags,name','relationship_table'=>'product_tag','datatable_ajax'=>'true'];
+			$this->form[] = ['label'=>'Tags','name'=>'tags','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'tags,name','relationship_table'=>'product_tag','datatable_ajax'=>'true'];
+			$this->form[] = ['label'=>'Categories','name'=>'categories','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'categories,name','relationship_table'=>'category_product','datatable_ajax'=>'true'];
 			# END FORM DO NOT REMOVE THIS LINE
 
 			# OLD START FORM
@@ -51,7 +55,7 @@
 			//$this->form[] = ['label'=>'Description','name'=>'description','type'=>'wysiwyg','validation'=>'required|string|min:5|max:5000','width'=>'col-sm-10'];
 			//$this->form[] = ['label'=>'Status','name'=>'status','type'=>'select','validation'=>'required','width'=>'col-sm-10','dataenum'=>'pending;active;'];
 			//$this->form[] = ['label'=>'Price','name'=>'price','type'=>'text','validation'=>'required','width'=>'col-sm-10'];
-			//$this->form[] = ['label'=>'Tags','name'=>'tag','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'tags,name','relationship_table'=>'product_tag','datatable_ajax'=>'true'];
+			//$this->form[] = ['label'=>'Tags','name'=>'tags','type'=>'select2','validation'=>'required','width'=>'col-sm-10','datatable'=>'tags,name','relationship_table'=>'product_tag','datatable_ajax'=>'true'];
 			# OLD END FORM
 
 			/* 
@@ -236,6 +240,8 @@
 	    public function actionButtonSelected($id_selected,$button_name) {
 	      //$id_selected is an array of id 
 		  //$button_name is a name that you have set at button_selected 
+
+	    	dd($id_selected);
 		  
 		  if($button_name == 'set_active') {
 		    DB::table('products')->whereIn('id',$id_selected)->update(['status'=>'active']);
@@ -288,9 +294,15 @@
 	    | @id = last insert id
 	    | 
 	    */
-	    public function hook_after_add($id) {        
-	        //Your code here
+	    public function hook_after_add($id) {
 
+	    	$tags = Tag::find((array)request()->tags); //Get tags
+	    	Product::find($id)->tags()->attach($tags); // Attatch tags
+	    	DB::table('product_tag')->whereNull('products_id')->delete(); //Delete old inserted null rows
+
+	    	$categories = Category::find((array)request()->categories); //Get categories
+	    	Product::find($id)->categories()->attach($categories); // Attatch categories
+	    	DB::table('category_product')->whereNull('products_id')->delete(); //Delete old inserted null rows
 	    }
 
 	    /* 
@@ -326,8 +338,8 @@
 	    | 
 	    */
 	    public function hook_before_delete($id) {
-	        //Your code here
-
+	    	Product::find($id)->tags()->detach(); //Delete existing tags
+	    	Product::find($id)->categories()->detach(); //Delete existing category
 	    }
 
 	    /* 

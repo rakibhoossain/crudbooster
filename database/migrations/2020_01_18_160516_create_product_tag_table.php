@@ -15,7 +15,7 @@ class CreateProductTagTable extends Migration
     {
         Schema::create('product_tag', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('products_id');
+            $table->unsignedInteger('products_id')->nullable();
             $table->unsignedInteger('tags_id');
             $table->timestamps();
         });

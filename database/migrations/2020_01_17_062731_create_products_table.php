@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('name',250);
             $table->text('description');
             $table->unsignedDecimal('price', 8, 2);
-            $table->text('status')->default('pending');
+            $table->string('status',50)->default('pending');
             $table->timestamps();
         });
     }
