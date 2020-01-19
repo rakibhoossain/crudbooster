@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 18, 2020 at 06:27 PM
+-- Generation Time: Jan 19, 2020 at 03:13 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
 
@@ -55,20 +55,11 @@ DROP TABLE IF EXISTS `category_product`;
 CREATE TABLE IF NOT EXISTS `category_product` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `categories_id` int(10) UNSIGNED NOT NULL,
-  `products_id` int(10) UNSIGNED NOT NULL,
+  `products_id` int(10) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `category_product`
---
-
-INSERT INTO `category_product` (`id`, `categories_id`, `products_id`, `created_at`, `updated_at`) VALUES
-(4, 2, 2, NULL, NULL),
-(3, 1, 2, NULL, NULL),
-(5, 2, 3, NULL, NULL);
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -201,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `cms_logs` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `cms_logs`
@@ -264,7 +255,19 @@ INSERT INTO `cms_logs` (`id`, `ipaddress`, `useragent`, `url`, `description`, `d
 (54, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36', 'http://localhost/crudbooster/admin/login', 'admin@crudbooster.com login with IP Address ::1', '', 1, '2020-01-18 12:14:52', NULL),
 (55, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36', 'http://localhost/crudbooster/admin/products/add-save', 'Add New Data  at Product', '', 1, '2020-01-18 12:16:03', NULL),
 (56, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36', 'http://localhost/crudbooster/admin/products/action-selected', 'Delete data 6,5,4,3,2 at Product', '', 1, '2020-01-18 12:22:31', NULL),
-(57, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36', 'http://localhost/crudbooster/admin/products/add-save', 'Add New Data  at Product', '', 1, '2020-01-18 12:22:48', NULL);
+(57, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36', 'http://localhost/crudbooster/admin/products/add-save', 'Add New Data  at Product', '', 1, '2020-01-18 12:22:48', NULL),
+(58, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36', 'http://localhost/crudbooster/admin/login', 'admin@crudbooster.com login with IP Address ::1', '', 1, '2020-01-19 08:14:23', NULL),
+(59, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36', 'http://localhost/crudbooster/admin/products/action-selected', 'Delete data 7 at Product', '', 1, '2020-01-19 08:14:39', NULL),
+(60, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36', 'http://localhost/crudbooster/admin/products/add-save', 'Add New Data  at Product', '', 1, '2020-01-19 08:15:23', NULL),
+(61, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36', 'http://localhost/crudbooster/admin/products/add-save', 'Add New Data  at Product', '', 1, '2020-01-19 08:34:28', NULL),
+(62, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36', 'http://localhost/crudbooster/admin/products/add-save', 'Add New Data  at Product', '', 1, '2020-01-19 08:35:50', NULL),
+(63, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36', 'http://localhost/crudbooster/admin/products/action-selected', 'Delete data 23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8 at Product', '', 1, '2020-01-19 08:44:23', NULL),
+(64, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36', 'http://localhost/crudbooster/admin/products/edit-save/24', 'Update data  at Product', '<table class=\"table table-striped\"><thead><tr><th>Key</th><th>Old Value</th><th>New Value</th></thead><tbody></tbody></table>', 1, '2020-01-19 08:45:44', NULL),
+(65, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36', 'http://localhost/crudbooster/admin/products/add-save', 'Add New Data  at Product', '', 1, '2020-01-19 09:04:40', NULL),
+(66, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36', 'http://localhost/crudbooster/admin/products/edit-save/1', 'Update data  at Product', '<table class=\"table table-striped\"><thead><tr><th>Key</th><th>Old Value</th><th>New Value</th></thead><tbody></tbody></table>', 1, '2020-01-19 09:04:54', NULL),
+(67, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36', 'http://localhost/crudbooster/admin/products/delete/1', 'Delete data 1 at Product', '', 1, '2020-01-19 09:05:43', NULL),
+(68, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36', 'http://localhost/crudbooster/admin/products/add-save', 'Add New Data  at Product', '', 1, '2020-01-19 09:09:09', NULL),
+(69, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.117 Safari/537.36', 'http://localhost/crudbooster/admin/products/delete/2', 'Delete data 2 at Product', '', 1, '2020-01-19 09:09:22', NULL);
 
 -- --------------------------------------------------------
 
@@ -614,7 +617,7 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=53 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
@@ -647,14 +650,14 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (24, '2016_11_17_102740_create_cms_statistic_components', 1),
 (25, '2017_06_06_164501_add_deleted_at_cms_moduls', 1),
 (30, '2020_01_17_064532_create_favorites_table', 2),
-(37, '2020_01_17_062731_create_products_table', 4),
 (31, '2020_01_17_084253_create_customers_table', 2),
 (41, '2020_01_17_132411_create_orders_detail_table', 6),
 (38, '2020_01_17_132125_create_orders_table', 5),
 (42, '2020_01_18_155324_create_categories_table', 7),
 (43, '2020_01_18_155843_create_tags_table', 7),
-(48, '2020_01_18_160417_create_category_product_table', 9),
-(47, '2020_01_18_160516_create_product_tag_table', 8);
+(50, '2020_01_18_160417_create_category_product_table', 8),
+(51, '2020_01_18_160516_create_product_tag_table', 8),
+(52, '2020_01_17_062731_create_products_table', 9);
 
 -- --------------------------------------------------------
 
@@ -693,18 +696,11 @@ CREATE TABLE IF NOT EXISTS `products` (
   `name` varchar(250) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` decimal(8,2) UNSIGNED NOT NULL,
-  `status` text COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
+  `status` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `products`
---
-
-INSERT INTO `products` (`id`, `name`, `description`, `price`, `status`, `created_at`, `updated_at`) VALUES
-(7, 'test tag', '<p>hello</p>', '70.00', 'active', '2020-01-18 12:22:48', NULL);
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -716,22 +712,11 @@ DROP TABLE IF EXISTS `product_tag`;
 CREATE TABLE IF NOT EXISTS `product_tag` (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `products_id` int(10) UNSIGNED DEFAULT NULL,
-  `tags_id` int(10) UNSIGNED DEFAULT NULL,
+  `tags_id` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `product_tag`
---
-
-INSERT INTO `product_tag` (`id`, `products_id`, `tags_id`, `created_at`, `updated_at`) VALUES
-(6, 3, 1, NULL, NULL),
-(5, 2, 1, NULL, NULL),
-(7, 3, 2, NULL, NULL),
-(11, NULL, 2, NULL, NULL),
-(10, NULL, 1, NULL, NULL);
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
